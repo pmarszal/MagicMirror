@@ -24,17 +24,19 @@ date = str(t[2]) +"."+ str(t[1]) +"."+ str(t[0])
 wddict = ["Monday", "Tuesday" , "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 weekday =wddict[t[6]]
 
-
-#Reddit Showerthought
-reddd = praw.Reddit(user_agent="Showerthought-scraper")
-showerthought = reddd.get_subreddit("Showerthoughts").get_top_from_day(limit=1).next().title
+shower_f=open("/var/www/data/showerthought.json", "r")
+showerthought = json.load(shower_f)["showerthought"]
 
 #Weather Today
 icon_dict ={"Clear":"/images/sun.svg", "Rain":"/images/rain.svg", "Clouds":"/images/cloud.svg"}
 
-weather_obj = weather.weather_forecast()
-weather_obj.download()
-temperature, temperature_std, weather_main, weather_hour = weather_obj.avge()
+f = open("/var/www/data/proc_data.json","r")
+weather_obj = json.load(f)
+
+temperature = weather_obj["temperature"]
+temperature_std = weather_obj["temperature_std"]
+weather_main = weather_obj["weather_main"]
+weather_hour = weather_obj["weather_desc"]
 
 #Render HTML
 renderedfile = open('/var/www/html/home.html', 'w')

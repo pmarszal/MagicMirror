@@ -7,22 +7,29 @@ class weather_forecast():
 	icon_dict ={"Clear":"/images/sun.svg", "Rain":"/images/rain.svg", "Clouds"    :"/images/cloud.svg"}
 	api_key = "3b1cc169c1188ce8f299de7a7164d045"
 	d = {}
-	
+	default_source = "/var/www/data/weather.json"	
 	considered_range=4	
 
 
 	def __init__(self):
 		return None
 	
-	def download(self):
-		uu = urllib.urlopen("http://api.openweathermap.org/data/2.5/forecast?lat=5    1.52&lon=9.93&appid=3b1cc169c1188ce8f299de7a7164d045")
-		#uu = open("weather_data.json", "r")
-		self.d = json.load(uu)
-	
-		#wea = d["list"][0]["weather"][0]["main"]
-		#wea_desc = d["list"][0]["weather"][0]["description"]
-		#temp = float(d["list"][0]["main"]["temp"])-273.
+	def download(self, def_url=default_source):
+		uu = None
+		if def_url==self.default_source:
+			uu = open(def_url)
+			self.d = json.load(uu)
+			uu.close()
+		else:
+			uu = urllib.urlopen(def_url)
+			x = json.load(uu)
+			self.d = x
+			f = open(self.default_source,"w")
+			json.dump(x, f)
 		
+		#uu = urllib.urlopen("http://api.openweathermap.org/data/2.5/forecast?lat=5    1.52&lon=9.93&appid=3b1cc169c1188ce8f299de7a7164d045")
+		#self.d = json.load(uu)
+	
 	def avge(self):
 		temperature_list = []
 		weather_description_list =[]
