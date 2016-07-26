@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="refresh" content="5" >	
+
+<head>
+<title> Monitoring </title>
+</head>
+
+<body bgcolor="#000000">
+<font color="white" face="sans-serif">
+
+<table style="width:100%">
+	<tr><td>
+		<table style="width:95%">
+		<tr>
+			<td style="font-size:72pt;"> ${hour}:${minute} </td>
+			<td style="font-size:40pt; text-align:right"> ${temp} C <font style="font-size:20pt"> ${temp_std} </font></td>
+		</tr>
+		<tr>
+			<td style="font-size:32pt;line-height:0%"> <p>${weekday},</p> <p style="line-height:0%">${date}</p> </td>
+			<td style="font-size:28pt; text-align:right"> ${wea_desc}</td>
+		</tr>
+		</table>
+	</td>
+	<td>
+		<img src="${tdwthicon}" width=240>
+	</td></tr>
+</table>
+
+<p> ${Message} </p>
+
+<p style="position:fixed; bottom:0; width:100%;text-align:center; font-size:24pt;"> ${showerthought} </p>
+</font>
+</body>
+</html>
